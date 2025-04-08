@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        li {
+            background-color: #ffffff;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .book-info {
+            font-size: 16px;
+        }
+
+        .available {
+            color: green;
+            font-weight: bold;
+        }
+
+        .unavailable {
+            color: red;
+            font-weight: bold;
+        }
+
+        .no-books {
+            text-align: center;
+            color: #888;
+            font-size: 18px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Список книг</h1>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                <span class="book-info">
+                    <strong>{{ book.title }}</strong> — {{ book.author }}
+                </span>
+                {% if book.is_available %}
+                    <span class="available">(Доступна)</span>
+                {% else %}
+                    <span class="unavailable">(На руках)</span>
+                {% endif %}
+            </li>
+        {% empty %}
+            <p class="no-books">Книг пока нет.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
